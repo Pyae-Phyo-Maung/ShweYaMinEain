@@ -3,440 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Korina Villanueva - Graphic Designer Portfolio</title>
+    <title>Jane Doe | Junior Accountant Portfolio</title>
     <style>
-        /* General Body Styles */
+        /* Basic styling for readability - You'll replace this with your actual CSS */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Align to the top */
-            min-height: 100vh; /* Ensure it takes full viewport height */
-            background-color: #f5f5f5; /* Light grey background for the page */
-            padding: 20px 0; /* Some padding around the document */
-            box-sizing: border-box;
-        }
-
-        /* Container for the entire portfolio document */
-        .portfolio-container {
-            display: flex;
-            width: 850px; /* Approximate width to match an A4/Letter page ratio */
-            background-color: #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 8px; /* Slightly rounded corners for the document */
-            overflow: hidden; /* Important for shadow and border-radius */
-        }
-
-        /* Left Panel Styles */
-        .left-panel {
-            width: 35%; /* Adjusted width to match the image proportion */
-            background-color: #c9bdae; /* Muted beige/brown */
-            padding: 40px 30px; /* Increased padding */
-            color: #4a4a4a;
-            box-sizing: border-box; /* Include padding in the width */
-        }
-
-        .profile-section {
-            text-align: center;
-            margin-bottom: 40px; /* More space below profile pic */
-            position: relative;
-            top: -20px; /* Slightly move up to overlap the top header area */
-        }
-
-        .profile-pic {
-            width: 140px; /* Larger profile picture */
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #fff; /* Thicker white border */
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); /* Softer shadow */
-        }
-
-        /* Headings in Left Panel */
-        .left-panel h3 {
-            font-size: 1.15em;
-            margin-top: 35px; /* More space above headings */
-            margin-bottom: 15px;
-            color: #333;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(0,0,0,0.1); /* Subtle separator */
-            padding-bottom: 5px;
-        }
-
-        /* Contact List */
-        .contact-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .contact-list li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 0.95em;
-            line-height: 1.4;
-        }
-
-        .contact-list li img {
-            width: 18px; /* Icon size */
-            height: 18px;
-            margin-right: 12px;
-            filter: brightness(0.5); /* Make icons slightly darker for contrast */
-        }
-
-        /* Education & Experience Items */
-        .education-item,
-        .experience-item {
-            margin-bottom: 25px; /* Spacing between items */
-            position: relative; /* For the timeline dot/line */
-            padding-left: 20px; /* Space for the timeline */
-        }
-
-        .education-item:last-child,
-        .experience-item:last-child {
-            margin-bottom: 0; /* No margin after the last item in a section */
-        }
-
-        .education-item h4,
-        .experience-item h4 {
-            font-size: 1em;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .education-item p,
-        .experience-item p {
-            font-size: 0.9em;
-            margin: 0; /* Remove default paragraph margin */
-            line-height: 1.4;
-            color: #555;
-        }
-
-        .education-item p:nth-of-type(2) { /* For dates in education */
-            font-size: 0.85em;
-            color: #666;
-            margin-top: 3px;
-        }
-        .education-item p:nth-of-type(3) { /* For location in education */
-            font-size: 0.85em;
-            color: #666;
-            margin-top: 3px;
-        }
-
-
-        /* Skills Section */
-        .skills-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .skills-list li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px; /* Spacing between skills */
-            font-size: 0.95em;
-            color: #4a4a4a;
-        }
-
-        .skill-level {
-            display: flex;
-        }
-
-        .skill-level-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #555; /* Filled dot */
-            margin-left: 6px; /* Spacing between dots */
-            border: 1px solid #555; /* Outline for all dots */
-        }
-
-        .skill-level-dot.empty {
-            background-color: transparent; /* Empty dot background */
-            border: 1px solid #555; /* Maintain border */
-        }
-
-        /* Right Panel Styles */
-        .right-panel {
-            width: 65%; /* Adjusted width */
-            background-color: #f7f3ed; /* Light cream */
-            padding: 40px 30px; /* Increased padding */
-            box-sizing: border-box;
-            position: relative; /* For the top header area */
-        }
-
-        /* Top Header Area (Korina Villanueva, Graphic Designer) */
-        .top-header-area {
-            background-color: #e2d9cd; /* Slightly darker cream for the top bar */
-            height: 100px; /* Height of the bar */
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-left: 30px; /* Align with content below */
-            box-sizing: border-box;
-        }
-
-        .top-header-area h1 {
-            font-size: 2.2em; /* Larger name */
-            margin: 0;
-            color: #333;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .top-header-area h2 {
-            font-size: 1.3em; /* Larger profession */
-            margin-top: 5px;
-            color: #555;
-            font-weight: normal;
-        }
-
-        /* Main content area below the header */
-        .main-content {
-            padding-top: 120px; /* Space for the fixed header */
-        }
-
-
-        .main-content > p {
-            font-size: 0.95em;
             line-height: 1.6;
-            margin-top: 0;
-            margin-bottom: 30px; /* More space below intro text */
-            color: #4a4a4a;
-        }
-
-        /* Headings in Right Panel */
-        .right-panel h3 {
-            font-size: 1.15em;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            color: #333;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding-bottom: 5px;
-        }
-
-        /* Experience Section Specifics */
-        .experience-item {
-            border-left: 2px solid #a8a096; /* Timeline line */
-            padding-left: 20px; /* Space for the line and dot */
-        }
-        .experience-item::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background-color: #a8a096;
-            border-radius: 50%;
-            position: absolute;
-            left: -6px; /* Position the dot over the line */
-            top: 4px; /* Adjust vertically */
-            z-index: 1; /* Ensure dot is on top of the line */
-        }
-        .experience-item h4 {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-        .experience-item .date {
-            font-size: 0.85em;
-            color: #666;
-            font-weight: normal;
-            white-space: nowrap; /* Keep date on one line */
-            margin-left: 10px; /* Space between title and date */
-        }
-
-        /* Language Section */
-        .language-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 18px;
-            font-size: 0.95em;
-            color: #4a4a4a;
-        }
-
-        .language-item span {
-            min-width: 60px; /* Give language names a consistent width */
-        }
-
-        .language-bar {
-            flex-grow: 1;
-            height: 10px; /* Thicker bar */
-            background-color: #d1c1b3; /* Lighter shade of the left panel color */
-            border-radius: 5px;
-            margin-left: 15px;
-            overflow: hidden; /* Ensure fill stays within bounds */
-        }
-
-        .language-fill {
-            height: 100%;
-            background-color: #555; /* Darker fill color */
-            border-radius: 5px;
-        }
-
-        /* Reference Section */
-        .reference-item {
-            margin-bottom: 20px;
-        }
-
-        .reference-item h4 {
-            font-size: 1em;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .reference-item p {
-            font-size: 0.9em;
             margin: 0;
-            line-height: 1.4;
-            color: #555;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 20px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+            text-align: center;
+        }
+        header h1 {
+            float: none; /* Centering for simplicity */
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+        header nav {
+            float: none; /* Centering for simplicity */
+            display: block;
+            margin-top: 10px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+            display: inline-block;
+        }
+        header li {
+            display: inline;
+            padding: 0 15px;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        .hero {
+            background: #555;
+            color: #fff;
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden; /* For transparent background image */
+        }
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.2em;
+        }
+        .profile-img {
+            width: 200px; /* Adjust size as needed */
+            height: 200px;
+            border-radius: 50%; /* Makes it round */
+            object-fit: cover;
+            border: 5px solid #77aaff;
+            margin-top: 20px;
+            /* For transparent background: ensure the image itself is a PNG with transparency */
+            /* You'd use a CSS animation library or custom keyframes for the animation */
+            animation: fadeIn 2s ease-out forwards; /* Example animation */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        section {
+            padding: 40px 0;
+            background: #fff;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .skill-list, .experience-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .skill-list li, .experience-item {
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-left: 5px solid #77aaff;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+        }
+        .contact-info {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="portfolio-container">
-        <div class="left-panel">
-            <div class="profile-section">
-                <img src="your-profile-pic.jpg" alt="Korina Villanueva" class="profile-pic">
-            </div>
 
-            <h3>Contact</h3>
-            <ul class="contact-list">
-                <li><img src="phone-icon.png" alt="Phone Icon"> +123 456 7890</li>
-                <li><img src="email-icon.png" alt="Email Icon"> hello@reallygreatsite.com</li>
-                <li><img src="website-icon.png" alt="Website Icon"> www.reallygreatsite.com</li>
-                <li><img src="location-icon.png" alt="Location Icon"> 123 Anywhere St., Any City</li>
-            </ul>
-
-            <h3>Education</h3>
-            <div class="education-item">
-                <h4>Bachelor of Design</h4>
-                <p>Really Great University</p>
-                <p>2015-2018</p>
-                <p>123 Anywhere St., Any City</p>
-            </div>
-            <div class="education-item">
-                <h4>Master of Design</h4>
-                <p>Really Great University</p>
-                <p>2018-2020</p>
-                <p>123 Anywhere St., Any City</p>
-            </div>
-
-            <h3>Skills</h3>
-            <ul class="skills-list">
-                <li>
-                    <span>Organized</span>
-                    <div class="skill-level">
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot empty"></div>
-                    </div>
-                </li>
-                <li>
-                    <span>Communication</span>
-                    <div class="skill-level">
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                    </div>
-                </li>
-                <li>
-                    <span>Teamwork</span>
-                    <div class="skill-level">
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot empty"></div>
-                    </div>
-                </li>
-                <li>
-                    <span>Meeting deadlines</span>
-                    <div class="skill-level">
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                    </div>
-                </li>
-                <li>
-                    <span>Critical thinking</span>
-                    <div class="skill-level">
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot"></div>
-                        <div class="skill-level-dot empty"></div>
-                    </div>
-                </li>
-            </ul>
+    <header id="home">
+        <div class="container">
+            <h1>
+                <svg width="50" height="50" viewBox="0 0 100 100" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="10" width="80" height="80" rx="10" fill="none" stroke="#77aaff" stroke-width="5"/>
+                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="#fff" text-anchor="middle">JD</text>
+                </svg>
+                Jane Doe
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div class="right-panel">
-            <div class="top-header-area">
-                <h1>KORINA VILLANUEVA</h1>
-                <h2>Graphic Designer</h2>
-            </div>
-
-            <div class="main-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut enim non leo risus egestas accumsan in non mi. Nulla egestas euismod augue, nec facilisis mi. Sed laoreet, semper ac hendrerit a, sollicitudin in arcu.</p>
-
-                <h3>Experience</h3>
-                <div class="experience-item">
-                    <h4>Graphic Designer <span class="date">Jan 2021 - Jan 2023</span></h4>
-                    <p>Aldemar & Partners</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut enim non leo risus egestas accumsan in non mi. Nulla tincidunt ut quam eget, luctus sollicitudin neque.</p>
-                </div>
-                <div class="experience-item">
-                    <h4>Graphic Designer <span class="date">Jan 2020 - Dec 2020</span></h4>
-                    <p>Warner & Spencer</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut enim non leo risus egestas accumsan in non mi. Nulla tincidunt ut quam eget, luctus sollicitudin neque.</p>
-                </div>
-                <div class="experience-item">
-                    <h4>Graphic Designer <span class="date">Jan 2017 - Dec 2019</span></h4>
-                    <p>Impulse Company</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut enim non leo risus egestas accumsan in non mi. Nulla tincidunt ut quam eget, luctus sollicitudin neque.</p>
-                </div>
-
-                <h3>Language</h3>
-                <div class="language-item">
-                    <span>French</span>
-                    <div class="language-bar"><div class="language-fill" style="width: 60%;"></div></div>
-                </div>
-                <div class="language-item">
-                    <span>English</span>
-                    <div class="language-bar"><div class="language-fill" style="width: 100%;"></div></div>
-                </div>
-                <div class="language-item">
-                    <span>Spanish</span>
-                    <div class="language-bar"><div class="language-fill" style="width: 75%;"></div></div>
-                </div>
-
-                <h3>Reference</h3>
-                <div class="reference-item">
-                    <h4>Alfredo Torres</h4>
-                    <p>Director</p>
-                    <p>Aldemar & Partners</p>
-                    <p>+123 456 7890</p>
-                </div>
-            </div>
+    <section class="hero">
+        <div class="container">
+            <img src="jane-doe-profile.png" alt="Jane Doe Professional Photo" class="profile-img">
+            <h2>Precision in Numbers, Powering Growth.</h2>
+            <p>Your Dedicated Partner for Financial Accuracy and Insight.</p>
         </div>
-    </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <p>Hello! I'm Jane Doe, a highly motivated and detail-oriented junior accountant with a strong foundation in financial principles and a passion for data accuracy. I'm eager to contribute my analytical skills and dedication to a dynamic accounting team, driving efficiency and supporting sound financial decision-making.</p>
+
+        <h3>Key Strengths & Values:</h3>
+        <ul>
+            <li>**Meticulous Attention to Detail:** Ensuring the highest level of accuracy in financial records.</li>
+            <li>**Proficiency in Accounting Software:** Adapting quickly to new systems and maximizing their utility.</li>
+            <li>**Strong Analytical and Problem-Solving Skills:** Identifying discrepancies and proposing effective solutions.</li>
+            <li>**Commitment to Ethical Practice:** Upholding integrity and confidentiality in all financial matters.</li>
+            <li>**Continuous Learner:** Actively seeking opportunities to expand knowledge and improve processes.</li>
+        </ul>
+        <p>Outside of my professional pursuits, I enjoy playing chess, which has further honed my strategic thinking and ability to anticipate outcomes – skills I find directly applicable to financial planning and analysis.</p>
+        <p style="text-align: center;">Explore my skills and experience below to see how I can be an asset to your team.</p>
+    </section>
+
+    <section id="skills" class="container">
+        <h2>Skills</h2>
+        <h3>Technical Skills:</h3>
+        <ul class="skill-list">
+            <li>**Accounting Software:** QuickBooks Online (Advanced Certified User), Xero, SAP (Basic Navigation), Tally.ERP 9</li>
+            <li>**Microsoft Office Suite:** Excel (Pivot Tables, VLOOKUP, HLOOKUP, Conditional Formatting, Data Validation), Word, PowerPoint, Outlook</li>
+            <li>**ERP Systems:** Basic familiarity with enterprise resource planning concepts.</li>
+            <li>**Data Analysis Tools:** Basic understanding of data visualization principles.</li>
+        </ul>
+
+        <h3>Soft Skills:</h3>
+        <ul class="skill-list">
+            <li>Attention to Detail</li>
+            <li>Problem-Solving</li>
+            <li>Analytical Thinking</li>
+            <li>Effective Communication (Written & Verbal)</li>
+            <li>Team Collaboration</li>
+            <li>Time Management & Organization</li>
+            <li>Adaptability & Flexibility</li>
+            <li>Ethical Judgment</li>
+        </ul>
+    </section>
+
+    <section id="experience" class="container">
+        <h2>Projects & Experience</h2>
+        <ul class="experience-list">
+            <li class="experience-item">
+                <h3>Accounting Intern | ABC Solutions Inc. | June 2024 – August 2024</h3>
+                <ul>
+                    <li>Assisted in the reconciliation of **25+** bank accounts and credit card statements monthly, identifying and resolving **10+** discrepancies, which improved financial reporting accuracy.</li>
+                    <li>Prepared and processed **50+** journal entries weekly, ensuring all transactions were accurately recorded in the general ledger and maintaining compliance with company policies.</li>
+                    <li>Supported the accounts payable department by verifying **100+** invoices against purchase orders and receipts, contributing to timely vendor payments and efficient cash flow management.</li>
+                    <li>Collaborated with senior accountants on month-end closing procedures, including data validation and preliminary financial statement preparation, enhancing my understanding of full-cycle accounting.</li>
+                </ul>
+            </li>
+            <li class="experience-item">
+                <h3>Volunteer Bookkeeper | Community Outreach Foundation | September 2023 – May 2024</h3>
+                <ul>
+                    <li>Managed financial records for a non-profit organization using QuickBooks Online, ensuring accurate categorization of income and expenses.</li>
+                    <li>Generated monthly financial reports, including Statements of Activities and Statements of Financial Position, providing clear insights into the foundation's fiscal health for board members.</li>
+                    <li>Assisted in preparing documentation for the annual audit, contributing to a smooth and successful review process.</li>
+                </ul>
+            </li>
+            <li class="experience-item">
+                <h3>Academic Project: Financial Statement Analysis | University of XYZ | Fall 2023</h3>
+                <ul>
+                    <li>Conducted a comprehensive financial statement analysis of a publicly traded company using its annual reports (10-K filings).</li>
+                    <li>Utilized Excel to calculate key financial ratios (liquidity, profitability, solvency, efficiency) and presented findings on the company's financial health and performance to a peer group.</li>
+                    <li>Developed a projected income statement and balance sheet for the subsequent fiscal year, demonstrating forecasting skills.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Certifications:</h3>
+        <ul>
+            <li>QuickBooks Online Certified User (Intuit) - 2024</li>
+            <li>Introduction to Financial Accounting (Coursera Certificate) - 2023</li>
+        </ul>
+    </section>
+
+    <section class="container">
+        <h2>Testimonials</h2>
+        <blockquote>
+            "Jane was an invaluable asset during her internship. Her meticulous attention to detail and proactive approach to problem-solving significantly helped our team maintain accurate financial records. She's a quick learner and a pleasure to work with."
+            <cite>— John Smith, Senior Accountant, ABC Solutions Inc.</cite>
+        </blockquote>
+    </section>
+
+    <section id="contact" class="container contact-info">
+        <h2>Contact Me</h2>
+        <p><strong>Email:</strong> <a href="mailto:jane.doe@email.com">jane.doe@email.com</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/janedoeaccountant" target="_blank">linkedin.com/in/janedoeaccountant</a></p>
+        </section>
+
+    <footer>
+        <p>&copy; 2025 Jane Doe. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
