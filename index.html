@@ -3,343 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Junior Accountant Portfolio - [Your Name]</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Korina Villanueva - Graphic Designer Portfolio</title>
     <style>
-        /* Custom CSS for animations and fonts */
+        /* General Body Styles */
         body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to the top */
+            min-height: 100vh; /* Ensure it takes full viewport height */
+            background-color: #f5f5f5; /* Light grey background for the page */
+            padding: 20px 0; /* Some padding around the document */
+            box-sizing: border-box;
         }
 
-        /* Fade-in animation for sections */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .fade-in.appear {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Typing effect for hero title */
-        .typing-effect {
-            overflow: hidden; /* Ensures the content is not revealed until the animation */
-            white-space: nowrap; /* Keeps the content on a single line */
-            margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-            letter-spacing: .05em; /* Adjust as needed */
-            animation:
-                typing 3.5s steps(40, end),
-                blink-caret .75s step-end infinite;
-            animation-fill-mode: forwards; /* Keep the last state */
-            width: 0; /* Start with zero width */
+        /* Container for the entire portfolio document */
+        .portfolio-container {
+            display: flex;
+            width: 850px; /* Approximate width to match an A4/Letter page ratio */
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; /* Slightly rounded corners for the document */
+            overflow: hidden; /* Important for shadow and border-radius */
         }
 
-        /* The typing animation */
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        /* Left Panel Styles */
+        .left-panel {
+            width: 35%; /* Adjusted width to match the image proportion */
+            background-color: #c9bdae; /* Muted beige/brown */
+            padding: 40px 30px; /* Increased padding */
+            color: #4a4a4a;
+            box-sizing: border-box; /* Include padding in the width */
         }
 
-        /* The typewriter cursor effect */
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: currentColor; }
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px; /* More space below profile pic */
+            position: relative;
+            top: -20px; /* Slightly move up to overlap the top header area */
         }
 
-        /* Flower SVG background element */
-        .flower-bg-top-left {
+        .profile-pic {
+            width: 140px; /* Larger profile picture */
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fff; /* Thicker white border */
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); /* Softer shadow */
+        }
+
+        /* Headings in Left Panel */
+        .left-panel h3 {
+            font-size: 1.15em;
+            margin-top: 35px; /* More space above headings */
+            margin-bottom: 15px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(0,0,0,0.1); /* Subtle separator */
+            padding-bottom: 5px;
+        }
+
+        /* Contact List */
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .contact-list li img {
+            width: 18px; /* Icon size */
+            height: 18px;
+            margin-right: 12px;
+            filter: brightness(0.5); /* Make icons slightly darker for contrast */
+        }
+
+        /* Education & Experience Items */
+        .education-item,
+        .experience-item {
+            margin-bottom: 25px; /* Spacing between items */
+            position: relative; /* For the timeline dot/line */
+            padding-left: 20px; /* Space for the timeline */
+        }
+
+        .education-item:last-child,
+        .experience-item:last-child {
+            margin-bottom: 0; /* No margin after the last item in a section */
+        }
+
+        .education-item h4,
+        .experience-item h4 {
+            font-size: 1em;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .education-item p,
+        .experience-item p {
+            font-size: 0.9em;
+            margin: 0; /* Remove default paragraph margin */
+            line-height: 1.4;
+            color: #555;
+        }
+
+        .education-item p:nth-of-type(2) { /* For dates in education */
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 3px;
+        }
+        .education-item p:nth-of-type(3) { /* For location in education */
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 3px;
+        }
+
+
+        /* Skills Section */
+        .skills-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .skills-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px; /* Spacing between skills */
+            font-size: 0.95em;
+            color: #4a4a4a;
+        }
+
+        .skill-level {
+            display: flex;
+        }
+
+        .skill-level-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #555; /* Filled dot */
+            margin-left: 6px; /* Spacing between dots */
+            border: 1px solid #555; /* Outline for all dots */
+        }
+
+        .skill-level-dot.empty {
+            background-color: transparent; /* Empty dot background */
+            border: 1px solid #555; /* Maintain border */
+        }
+
+        /* Right Panel Styles */
+        .right-panel {
+            width: 65%; /* Adjusted width */
+            background-color: #f7f3ed; /* Light cream */
+            padding: 40px 30px; /* Increased padding */
+            box-sizing: border-box;
+            position: relative; /* For the top header area */
+        }
+
+        /* Top Header Area (Korina Villanueva, Graphic Designer) */
+        .top-header-area {
+            background-color: #e2d9cd; /* Slightly darker cream for the top bar */
+            height: 100px; /* Height of the bar */
             position: absolute;
-            top: -50px;
-            left: -50px;
-            width: 200px;
-            height: 200px;
-            opacity: 0.1;
-            transform: rotate(20deg);
-            z-index: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 30px; /* Align with content below */
+            box-sizing: border-box;
         }
-        .flower-bg-bottom-right {
+
+        .top-header-area h1 {
+            font-size: 2.2em; /* Larger name */
+            margin: 0;
+            color: #333;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .top-header-area h2 {
+            font-size: 1.3em; /* Larger profession */
+            margin-top: 5px;
+            color: #555;
+            font-weight: normal;
+        }
+
+        /* Main content area below the header */
+        .main-content {
+            padding-top: 120px; /* Space for the fixed header */
+        }
+
+
+        .main-content > p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-top: 0;
+            margin-bottom: 30px; /* More space below intro text */
+            color: #4a4a4a;
+        }
+
+        /* Headings in Right Panel */
+        .right-panel h3 {
+            font-size: 1.15em;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 5px;
+        }
+
+        /* Experience Section Specifics */
+        .experience-item {
+            border-left: 2px solid #a8a096; /* Timeline line */
+            padding-left: 20px; /* Space for the line and dot */
+        }
+        .experience-item::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: #a8a096;
+            border-radius: 50%;
             position: absolute;
-            bottom: -50px;
-            right: -50px;
-            width: 250px;
-            height: 250px;
-            opacity: 0.1;
-            transform: rotate(-30deg);
-            z-index: 0;
+            left: -6px; /* Position the dot over the line */
+            top: 4px; /* Adjust vertically */
+            z-index: 1; /* Ensure dot is on top of the line */
+        }
+        .experience-item h4 {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .experience-item .date {
+            font-size: 0.85em;
+            color: #666;
+            font-weight: normal;
+            white-space: nowrap; /* Keep date on one line */
+            margin-left: 10px; /* Space between title and date */
         }
 
-        /* Hover effect for buttons */
-        .btn-hover {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .btn-hover:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        /* Language Section */
+        .language-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 0.95em;
+            color: #4a4a4a;
         }
 
-        /* Flower SVG for decorative purposes */
-        .flower-icon {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            vertical-align: middle;
-            margin-right: 8px;
-            fill: currentColor;
+        .language-item span {
+            min-width: 60px; /* Give language names a consistent width */
+        }
+
+        .language-bar {
+            flex-grow: 1;
+            height: 10px; /* Thicker bar */
+            background-color: #d1c1b3; /* Lighter shade of the left panel color */
+            border-radius: 5px;
+            margin-left: 15px;
+            overflow: hidden; /* Ensure fill stays within bounds */
+        }
+
+        .language-fill {
+            height: 100%;
+            background-color: #555; /* Darker fill color */
+            border-radius: 5px;
+        }
+
+        /* Reference Section */
+        .reference-item {
+            margin-bottom: 20px;
+        }
+
+        .reference-item h4 {
+            font-size: 1em;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .reference-item p {
+            font-size: 0.9em;
+            margin: 0;
+            line-height: 1.4;
+            color: #555;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
+    <div class="portfolio-container">
+        <div class="left-panel">
+            <div class="profile-section">
+                <img src="your-profile-pic.jpg" alt="Korina Villanueva" class="profile-pic">
+            </div>
 
-    <!-- Flower SVG Definition (hidden) -->
-    <svg aria-hidden="true" style="display: none;">
-        <symbol id="flower-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a5 5 0 0 1 5 5c0 2.2-1.5 4-3.5 4.5S10 13.2 10 15c0 2.2 1.5 4 3.5 4.5S17 21.8 17 24"/>
-            <path d="M12 2a5 5 0 0 0-5 5c0 2.2 1.5 4 3.5 4.5S14 13.2 14 15c0 2.2-1.5 4-3.5 4.5S7 21.8 7 24"/>
-            <path d="M2 12a5 5 0 0 1 5-5c2.2 0 4 1.5 4.5 3.5S13.2 14 15 14c2.2 0 4 1.5 4.5 3.5S21.8 17 24 17"/>
-            <path d="M2 12a5 5 0 0 0 5 5c2.2 0 4-1.5 4.5-3.5S13.2 10 15 10c2.2 0 4-1.5 4.5-3.5S21.8 7 24 7"/>
-            <circle cx="12" cy="12" r="3"/>
-        </symbol>
-    </svg>
-
-    <!-- Header -->
-    <header class="bg-white shadow-md py-4 px-6 md:px-12 fixed w-full top-0 z-10">
-        <nav class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-purple-600">
-                <svg class="flower-icon text-purple-500" viewBox="0 0 24 24">
-                    <use xlink:href="#flower-svg"></use>
-                </svg>
-                [Your Name]
-            </a>
-            <ul class="hidden md:flex space-x-8">
-                <li><a href="#about" class="text-gray-600 hover:text-purple-600 transition duration-300">About</a></li>
-                <li><a href="#experience" class="text-gray-600 hover:text-purple-600 transition duration-300">Experience</a></li>
-                <li><a href="#education" class="text-gray-600 hover:text-purple-600 transition duration-300">Education</a></li>
-                <li><a href="#contact" class="text-gray-600 hover:text-purple-600 transition duration-300">Contact</a></li>
+            <h3>Contact</h3>
+            <ul class="contact-list">
+                <li><img src="phone-icon.png" alt="Phone Icon"> +123 456 7890</li>
+                <li><img src="email-icon.png" alt="Email Icon"> hello@reallygreatsite.com</li>
+                <li><img src="website-icon.png" alt="Website Icon"> www.reallygreatsite.com</li>
+                <li><img src="location-icon.png" alt="Location Icon"> 123 Anywhere St., Any City</li>
             </ul>
-            <!-- Mobile Menu Button (Hamburger) -->
-            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-purple-600 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-        </nav>
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 mt-4 border-t border-gray-200">
-            <ul class="flex flex-col items-center space-y-4">
-                <li><a href="#about" class="text-gray-600 hover:text-purple-600 transition duration-300 block py-2" onclick="toggleMobileMenu()">About</a></li>
-                <li><a href="#experience" class="text-gray-600 hover:text-purple-600 transition duration-300 block py-2" onclick="toggleMobileMenu()">Experience</a></li>
-                <li><a href="#education" class="text-gray-600 hover:text-purple-600 transition duration-300 block py-2" onclick="toggleMobileMenu()">Education</a></li>
-                <li><a href="#contact" class="text-gray-600 hover:text-purple-600 transition duration-300 block py-2" onclick="toggleMobileMenu()">Contact</a></li>
+
+            <h3>Education</h3>
+            <div class="education-item">
+                <h4>Bachelor of Design</h4>
+                <p>Really Great University</p>
+                <p>2015-2018</p>
+                <p>123 Anywhere St., Any City</p>
+            </div>
+            <div class="education-item">
+                <h4>Master of Design</h4>
+                <p>Really Great University</p>
+                <p>2018-2020</p>
+                <p>123 Anywhere St., Any City</p>
+            </div>
+
+            <h3>Skills</h3>
+            <ul class="skills-list">
+                <li>
+                    <span>Organized</span>
+                    <div class="skill-level">
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot empty"></div>
+                    </div>
+                </li>
+                <li>
+                    <span>Communication</span>
+                    <div class="skill-level">
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                    </div>
+                </li>
+                <li>
+                    <span>Teamwork</span>
+                    <div class="skill-level">
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot empty"></div>
+                    </div>
+                </li>
+                <li>
+                    <span>Meeting deadlines</span>
+                    <div class="skill-level">
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                    </div>
+                </li>
+                <li>
+                    <span>Critical thinking</span>
+                    <div class="skill-level">
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot"></div>
+                        <div class="skill-level-dot empty"></div>
+                    </div>
+                </li>
             </ul>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-purple-50 to-pink-50 min-h-screen flex items-center justify-center text-center pt-20 overflow-hidden">
-        <!-- Decorative Flower SVGs -->
-        <svg class="flower-bg-top-left text-pink-200" viewBox="0 0 24 24">
-            <use xlink:href="#flower-svg"></use>
-        </svg>
-        <svg class="flower-bg-bottom-right text-purple-200" viewBox="0 0 24 24">
-            <use xlink:href="#flower-svg"></use>
-        </svg>
+        <div class="right-panel">
+            <div class="top-header-area">
+                <h1>KORINA VILLANUEVA</h1>
+                <h2>Graphic Designer</h2>
+            </div>
 
-        <div class="relative z-10 p-6 md:p-12 bg-white bg-opacity-80 rounded-xl shadow-2xl max-w-3xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-4 border-r-4 border-purple-600 pr-2 typing-effect">
-                Hello, I'm <span class="text-purple-600">[Your Name]</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-700 mb-8">
-                A dedicated Junior Accountant passionate about precision and financial insight.
-            </p>
-            <a href="#contact" class="inline-block bg-purple-600 text-white text-lg font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-purple-700 btn-hover">
-                Get in Touch
-            </a>
-        </div>
-    </section>
+            <div class="main-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut enim non leo risus egestas accumsan in non mi. Nulla egestas euismod augue, nec facilisis mi. Sed laoreet, semper ac hendrerit a, sollicitudin in arcu.</p>
 
-    <!-- About Section -->
-    <section id="about" class="container mx-auto px-6 py-16 my-8 fade-in">
-        <div class="bg-white rounded-xl shadow-lg p-8 md:p-12">
-            <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">
-                <svg class="flower-icon text-pink-500" viewBox="0 0 24 24">
-                    <use xlink:href="#flower-svg"></use>
-                </svg>
-                About Me
-            </h2>
-            <p class="text-lg text-gray-700 leading-relaxed mb-8">
-                As a detail-oriented and analytical Junior Accountant, I bring a strong foundation in financial principles, meticulous record-keeping, and a keen eye for accuracy. My passion lies in transforming raw financial data into actionable insights that drive business growth and ensure compliance. I am eager to contribute my skills in a dynamic environment and continuously expand my expertise in the accounting field.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-purple-700 mb-3">Key Skills</h3>
-                    <ul class="list-disc list-inside text-gray-700">
-                        <li>Financial Reporting</li>
-                        <li>Bookkeeping & Reconciliation</li>
-                        <li>Accounts Payable/Receivable</li>
-                        <li>Payroll Processing</li>
-                        <li>Data Analysis</li>
-                        <li>Microsoft Excel (Advanced)</li>
-                        <li>QuickBooks, SAP (or other accounting software)</li>
-                    </ul>
+                <h3>Experience</h3>
+                <div class="experience-item">
+                    <h4>Graphic Designer <span class="date">Jan 2021 - Jan 2023</span></h4>
+                    <p>Aldemar & Partners</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut enim non leo risus egestas accumsan in non mi. Nulla tincidunt ut quam eget, luctus sollicitudin neque.</p>
                 </div>
-                <div class="bg-pink-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-pink-700 mb-3">My Approach</h3>
-                    <p class="text-gray-700">
-                        I believe in a proactive and systematic approach to accounting, ensuring all transactions are accurately recorded and reconciled. My goal is to maintain robust financial health and provide clear, concise reports that support strategic decision-making.
-                    </p>
+                <div class="experience-item">
+                    <h4>Graphic Designer <span class="date">Jan 2020 - Dec 2020</span></h4>
+                    <p>Warner & Spencer</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut enim non leo risus egestas accumsan in non mi. Nulla tincidunt ut quam eget, luctus sollicitudin neque.</p>
                 </div>
-                <div class="bg-yellow-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-yellow-700 mb-3">What I Offer</h3>
-                    <p class="text-gray-700">
-                        Reliability, accuracy, and a commitment to continuous learning. I am proficient in various accounting software and eager to adapt to new systems and challenges. I am a team player with excellent communication skills.
-                    </p>
+                <div class="experience-item">
+                    <h4>Graphic Designer <span class="date">Jan 2017 - Dec 2019</span></h4>
+                    <p>Impulse Company</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut enim non leo risus egestas accumsan in non mi. Nulla tincidunt ut quam eget, luctus sollicitudin neque.</p>
+                </div>
+
+                <h3>Language</h3>
+                <div class="language-item">
+                    <span>French</span>
+                    <div class="language-bar"><div class="language-fill" style="width: 60%;"></div></div>
+                </div>
+                <div class="language-item">
+                    <span>English</span>
+                    <div class="language-bar"><div class="language-fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="language-item">
+                    <span>Spanish</span>
+                    <div class="language-bar"><div class="language-fill" style="width: 75%;"></div></div>
+                </div>
+
+                <h3>Reference</h3>
+                <div class="reference-item">
+                    <h4>Alfredo Torres</h4>
+                    <p>Director</p>
+                    <p>Aldemar & Partners</p>
+                    <p>+123 456 7890</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="container mx-auto px-6 py-16 my-8 fade-in">
-        <div class="bg-white rounded-xl shadow-lg p-8 md:p-12">
-            <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">
-                <svg class="flower-icon text-purple-500" viewBox="0 0 24 24">
-                    <use xlink:href="#flower-svg"></use>
-                </svg>
-                Experience
-            </h2>
-            <div class="space-y-8">
-                <!-- Experience Item 1 -->
-                <div class="border-b border-gray-200 pb-8 last:border-b-0">
-                    <h3 class="text-2xl font-semibold text-purple-700">Junior Accountant</h3>
-                    <p class="text-xl text-gray-600">ABC Financial Services | Jan 2023 – Present</p>
-                    <ul class="list-disc list-inside text-gray-700 mt-4 space-y-2">
-                        <li>Assisted in the preparation of monthly, quarterly, and annual financial statements.</li>
-                        <li>Managed accounts payable and receivable, ensuring timely processing of invoices and payments.</li>
-                        <li>Performed bank and general ledger reconciliations, identifying and resolving discrepancies.</li>
-                        <li>Supported senior accountants in audit preparations and tax filings.</li>
-                        <li>Maintained accurate financial records using [Specific Accounting Software, e.g., QuickBooks].</li>
-                    </ul>
-                </div>
-                <!-- Experience Item 2 (Optional, duplicate and modify for more) -->
-                <div class="border-b border-gray-200 pb-8 last:border-b-0">
-                    <h3 class="text-2xl font-semibold text-pink-700">Accounting Intern</h3>
-                    <p class="text-xl text-gray-600">XYZ Corp | May 2022 – Aug 2022</p>
-                    <ul class="list-disc list-inside text-gray-700 mt-4 space-y-2">
-                        <li>Assisted with data entry and verification of financial transactions.</li>
-                        <li>Helped organize and file financial documents.</li>
-                        <li>Learned about various accounting procedures and internal controls.</li>
-                        <li>Contributed to a project on optimizing expense tracking processes.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="container mx-auto px-6 py-16 my-8 fade-in">
-        <div class="bg-white rounded-xl shadow-lg p-8 md:p-12">
-            <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">
-                <svg class="flower-icon text-yellow-500" viewBox="0 0 24 24">
-                    <use xlink:href="#flower-svg"></use>
-                </svg>
-                Education
-            </h2>
-            <div class="space-y-8">
-                <!-- Education Item 1 -->
-                <div class="border-b border-gray-200 pb-8 last:border-b-0">
-                    <h3 class="text-2xl font-semibold text-purple-700">Bachelor of Science in Accounting</h3>
-                    <p class="text-xl text-gray-600">University Name | Graduated: May 2022</p>
-                    <ul class="list-disc list-inside text-gray-700 mt-4 space-y-2">
-                        <li>Relevant Coursework: Financial Accounting, Managerial Accounting, Taxation, Auditing, Business Law.</li>
-                        <li>Dean's List (e.g., 3 semesters)</li>
-                        <li>Member of Accounting Student Association</li>
-                    </ul>
-                </div>
-                <!-- Education Item 2 (Optional) -->
-                <div class="border-b border-gray-200 pb-8 last:border-b-0">
-                    <h3 class="text-2xl font-semibold text-pink-700">Certified Public Accountant (CPA) Candidate</h3>
-                    <p class="text-xl text-gray-600">In Progress / Expected [Year]</p>
-                    <ul class="list-disc list-inside text-gray-700 mt-4 space-y-2">
-                        <li>Currently studying for FAR and AUD sections.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="container mx-auto px-6 py-16 my-8 fade-in">
-        <div class="bg-purple-600 text-white rounded-xl shadow-lg p-8 md:p-12 text-center">
-            <h2 class="text-4xl font-bold mb-8">
-                <svg class="flower-icon text-white" viewBox="0 0 24 24">
-                    <use xlink:href="#flower-svg"></use>
-                </svg>
-                Get in Touch
-            </h2>
-            <p class="text-lg mb-8 max-w-2xl mx-auto">
-                I'm always open to new opportunities and collaborations. Feel free to reach out via email or connect with me on LinkedIn.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
-                <a href="mailto:your.email@example.com" class="bg-white text-purple-600 text-lg font-semibold py-3 px-8 rounded-full shadow-md hover:bg-gray-100 btn-hover">
-                    Email Me
-                </a>
-                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="bg-white text-purple-600 text-lg font-semibold py-3 px-8 rounded-full shadow-md hover:bg-gray-100 btn-hover">
-                    Connect on LinkedIn
-                </a>
-            </div>
-            <p class="mt-8 text-sm opacity-80">
-                You can also download my resume <a href="#" class="underline hover:text-gray-200">here</a>.
-            </p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 text-center">
-        <div class="container mx-auto px-6">
-            <p>&copy; 2023 [Your Name]. All rights reserved.</p>
-            <p class="mt-2 text-sm opacity-75">Designed with <svg class="flower-icon inline-block w-4 h-4 text-pink-300" viewBox="0 0 24 24"><use xlink:href="#flower-svg"></use></svg> and Tailwind CSS.</p>
-        </div>
-    </footer>
-
-    <script>
-        // JavaScript for mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('hidden');
-        }
-
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
-
-        // JavaScript for fade-in animation on scroll
-        document.addEventListener("DOMContentLoaded", function() {
-            const sections = document.querySelectorAll('.fade-in');
-
-            const observerOptions = {
-                root: null, // viewport
-                rootMargin: '0px',
-                threshold: 0.1 // 10% of the section must be visible
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('appear');
-                        observer.unobserve(entry.target); // Stop observing once it appears
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
+    </div>
 </body>
 </html>
