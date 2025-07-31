@@ -4,117 +4,471 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jane Doe | Junior Accountant Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
-        /* Basic styling for readability - You'll replace this with your actual CSS */
+        /* General Styles */
+        :root {
+            --primary-color: #2c3e50; /* Dark Blue/Charcoal */
+            --secondary-color: #3498db; /* Professional Blue */
+            --accent-color: #2ecc71; /* Green for highlights/success */
+            --light-bg: #ecf0f1; /* Light Gray */
+            --text-color: #333;
+            --white-color: #fff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --transition-speed: 0.3s ease;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            scroll-behavior: smooth;
         }
+
         .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        header {
-            background: #333;
-            color: #fff;
-            padding-top: 20px;
-            min-height: 70px;
-            border-bottom: #77aaff 3px solid;
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2.5em;
             text-align: center;
-        }
-        header h1 {
-            float: none; /* Centering for simplicity */
-            display: inline-block;
-            margin: 0;
-            padding: 0;
-        }
-        header nav {
-            float: none; /* Centering for simplicity */
-            display: block;
-            margin-top: 10px;
-        }
-        header ul {
-            padding: 0;
-            list-style: none;
-            display: inline-block;
-        }
-        header li {
-            display: inline;
-            padding: 0 15px;
-        }
-        header a {
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-        .hero {
-            background: #555;
-            color: #fff;
-            text-align: center;
-            padding: 100px 0;
+            margin-bottom: 40px;
             position: relative;
-            overflow: hidden; /* For transparent background image */
         }
-        .hero h2 {
-            font-size: 3em;
-            margin-bottom: 10px;
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
         }
-        .hero p {
-            font-size: 1.2em;
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--primary-color);
+            color: var(--white-color);
+            padding: 15px 0;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--white-color);
+        }
+        .logo svg {
+            margin-right: 10px;
+            fill: var(--secondary-color); /* For SVG logo color */
+            transition: fill var(--transition-speed);
+        }
+        .logo:hover svg {
+            fill: var(--accent-color);
+        }
+
+        .nav-links li {
+            display: inline-block;
+            margin-left: 25px;
+        }
+        .nav-links a {
+            color: var(--white-color);
+            font-weight: 600;
+            transition: color var(--transition-speed), transform var(--transition-speed);
+            position: relative;
+            padding-bottom: 5px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width var(--transition-speed);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #3a5c7f 100%);
+            color: var(--white-color);
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        .hero-content {
+            z-index: 1;
+            position: relative;
         }
         .profile-img {
-            width: 200px; /* Adjust size as needed */
-            height: 200px;
-            border-radius: 50%; /* Makes it round */
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #77aaff;
-            margin-top: 20px;
-            /* For transparent background: ensure the image itself is a PNG with transparency */
-            /* You'd use a CSS animation library or custom keyframes for the animation */
-            animation: fadeIn 2s ease-out forwards; /* Example animation */
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        section {
-            padding: 40px 0;
-            background: #fff;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        section h2 {
-            text-align: center;
+            border: 6px solid var(--secondary-color);
+            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.1);
             margin-bottom: 30px;
-            color: #333;
+            transition: transform 0.5s ease-out;
+            animation: bounceIn 1s ease-out; /* Hero image animation */
         }
-        .skill-list, .experience-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .profile-img:hover {
+            transform: scale(1.05);
         }
-        .skill-list li, .experience-item {
-            background: #f9f9f9;
+        .hero h2 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            color: var(--white-color); /* Override section h2 color */
+            animation: slideInUp 1s ease-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+        .hero p {
+            font-size: 1.4em;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+            background: var(--white-color);
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* About Me */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .about-text, .about-skills {
+            flex: 1;
+            min-width: 300px;
+        }
+        .about-skills h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+        .about-skills ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .about-skills li {
+            background-color: var(--light-bg);
+            padding: 12px 15px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--accent-color);
+            transition: transform var(--transition-speed);
+        }
+        .about-skills li:hover {
+            transform: translateX(5px);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .skill-category {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform var(--transition-speed);
+        }
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+        .skill-category h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .skill-category h3 i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        .skill-category ul li {
             margin-bottom: 10px;
-            padding: 15px;
-            border-left: 5px solid #77aaff;
-            border-radius: 5px;
+            position: relative;
+            padding-left: 25px;
         }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #333;
-            color: #fff;
+        .skill-category ul li::before {
+            content: "\f00c"; /* Checkmark icon */
+            font-family: "Font Awesome 5 Free"; /* Make sure Font Awesome is linked */
+            font-weight: 900;
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            top: 2px;
         }
+
+        /* Experience Section */
+        .experience-item {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform var(--transition-speed);
+            border-left: 6px solid var(--secondary-color);
+            position: relative; /* For the date badge */
+        }
+        .experience-item:hover {
+            transform: translateY(-5px);
+        }
+        .experience-item h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+        .experience-item .role-company {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .experience-item ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .experience-item ul li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+        .certification-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .certification-list li {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background-color var(--transition-speed);
+        }
+        .certification-list li:hover {
+            background-color: #2980b9;
+        }
+
+        /* Testimonials */
+        blockquote {
+            background: var(--light-bg);
+            border-left: 8px solid var(--accent-color);
+            padding: 25px 30px;
+            margin: 40px auto;
+            font-style: italic;
+            color: #555;
+            max-width: 800px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 15px;
+            text-align: right;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Contact Section */
         .contact-info {
             text-align: center;
+            padding-top: 20px;
+        }
+        .contact-info p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+            font-size: 1.2em;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 30px auto 0;
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .contact-form button {
+            background-color: var(--accent-color);
+            color: var(--white-color);
+            padding: 12px 25px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color var(--transition-speed);
+        }
+        .contact-form button:hover {
+            background-color: #27ae60;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--primary-color);
+            color: var(--white-color);
+            margin-top: 50px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            .nav-links {
+                margin-top: 15px;
+                text-align: center;
+            }
+            .nav-links li {
+                margin: 0 10px;
+            }
+            .hero {
+                padding: 80px 0;
+            }
+            .hero h2 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .about-skills ul {
+                grid-template-columns: 1fr;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            section {
+                padding: 40px 0;
+            }
         }
     </style>
 </head>
@@ -122,77 +476,91 @@
 
     <header id="home">
         <div class="container">
-            <h1>
-                <svg width="50" height="50" viewBox="0 0 100 100" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="10" y="10" width="80" height="80" rx="10" fill="none" stroke="#77aaff" stroke-width="5"/>
-                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="#fff" text-anchor="middle">JD</text>
-                </svg>
-                Jane Doe
-            </h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <div class="navbar">
+                <a href="#home" class="logo">
+                    <svg width="35" height="35" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 0L0 50L50 100L100 50L50 0ZM50 10L90 50L50 90L10 50L50 10Z" fill="currentColor"/>
+                        <circle cx="50" cy="50" r="15" fill="#2ecc71"/>
+                        <text x="50" y="58" font-family="Montserrat, sans-serif" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">JD</text>
+                    </svg>
+                    Jane Doe
+                </a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
     <section class="hero">
-        <div class="container">
-            <img src="jane-doe-profile.png" alt="Jane Doe Professional Photo" class="profile-img">
+        <div class="container hero-content">
+            <img src="https://via.placeholder.com/220/3498db/FFFFFF?text=Your+Photo" alt="Jane Doe Professional Photo" class="profile-img">
             <h2>Precision in Numbers, Powering Growth.</h2>
-            <p>Your Dedicated Partner for Financial Accuracy and Insight.</p>
+            <p>Your Dedicated Partner for **Financial Accuracy** and **Insight**, driving efficiency and supporting sound decision-making.</p>
         </div>
     </section>
 
     <section id="about" class="container">
         <h2>About Me</h2>
-        <p>Hello! I'm Jane Doe, a highly motivated and detail-oriented junior accountant with a strong foundation in financial principles and a passion for data accuracy. I'm eager to contribute my analytical skills and dedication to a dynamic accounting team, driving efficiency and supporting sound financial decision-making.</p>
-
-        <h3>Key Strengths & Values:</h3>
-        <ul>
-            <li>**Meticulous Attention to Detail:** Ensuring the highest level of accuracy in financial records.</li>
-            <li>**Proficiency in Accounting Software:** Adapting quickly to new systems and maximizing their utility.</li>
-            <li>**Strong Analytical and Problem-Solving Skills:** Identifying discrepancies and proposing effective solutions.</li>
-            <li>**Commitment to Ethical Practice:** Upholding integrity and confidentiality in all financial matters.</li>
-            <li>**Continuous Learner:** Actively seeking opportunities to expand knowledge and improve processes.</li>
-        </ul>
-        <p>Outside of my professional pursuits, I enjoy playing chess, which has further honed my strategic thinking and ability to anticipate outcomes – skills I find directly applicable to financial planning and analysis.</p>
-        <p style="text-align: center;">Explore my skills and experience below to see how I can be an asset to your team.</p>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Hello! I'm Jane Doe, a highly motivated and detail-oriented junior accountant with a strong foundation in financial principles and a passion for data accuracy. I am eager to contribute my analytical skills and dedication to a dynamic accounting team, driving efficiency and supporting sound financial decision-making.</p>
+                <p>My approach is rooted in **meticulous attention to detail**, ensuring the highest level of accuracy in financial records. I am a **quick learner**, proficient in various accounting software, and committed to **ethical practice** and **confidentiality** in all financial matters.</p>
+                <p>Outside of my professional pursuits, I enjoy playing chess, which has further honed my **strategic thinking** and ability to anticipate outcomes – skills I find directly applicable to financial planning and analysis. I am actively seeking opportunities to expand my knowledge and improve financial processes.</p>
+                <p style="text-align: center; margin-top: 30px; font-weight: 600;">Explore my skills and experience below to see how I can be an asset to your team.</p>
+            </div>
+            <div class="about-skills">
+                <h3>Key Strengths & Values:</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Meticulous Attention to Detail</li>
+                    <li><i class="fas fa-check-circle"></i> Proficiency in Accounting Software</li>
+                    <li><i class="fas fa-check-circle"></i> Strong Analytical & Problem-Solving Skills</li>
+                    <li><i class="fas fa-check-circle"></i> Commitment to Ethical Practice</li>
+                    <li><i class="fas fa-check-circle"></i> Continuous Learner & Adaptable</li>
+                    <li><i class="fas fa-check-circle"></i> Excellent Communication & Teamwork</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <section id="skills" class="container">
         <h2>Skills</h2>
-        <h3>Technical Skills:</h3>
-        <ul class="skill-list">
-            <li>**Accounting Software:** QuickBooks Online (Advanced Certified User), Xero, SAP (Basic Navigation), Tally.ERP 9</li>
-            <li>**Microsoft Office Suite:** Excel (Pivot Tables, VLOOKUP, HLOOKUP, Conditional Formatting, Data Validation), Word, PowerPoint, Outlook</li>
-            <li>**ERP Systems:** Basic familiarity with enterprise resource planning concepts.</li>
-            <li>**Data Analysis Tools:** Basic understanding of data visualization principles.</li>
-        </ul>
-
-        <h3>Soft Skills:</h3>
-        <ul class="skill-list">
-            <li>Attention to Detail</li>
-            <li>Problem-Solving</li>
-            <li>Analytical Thinking</li>
-            <li>Effective Communication (Written & Verbal)</li>
-            <li>Team Collaboration</li>
-            <li>Time Management & Organization</li>
-            <li>Adaptability & Flexibility</li>
-            <li>Ethical Judgment</li>
-        </ul>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-laptop-code"></i> Technical Proficiency</h3>
+                <ul>
+                    <li>**Accounting Software:** QuickBooks Online (Advanced Certified User), Xero, SAP (Basic Navigation), Tally.ERP 9</li>
+                    <li>**Microsoft Office Suite:** Excel (Pivot Tables, VLOOKUP, HLOOKUP, Data Validation, Advanced Formulas), Word, PowerPoint, Outlook</li>
+                    <li>**ERP Systems:** Basic familiarity with enterprise resource planning concepts</li>
+                    <li>**Data Analysis:** Understanding of data visualization tools and principles</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-users"></i> Core Competencies</h3>
+                <ul>
+                    <li>**Attention to Detail:** Ensuring high accuracy in all financial documentation</li>
+                    <li>**Problem-Solving:** Identifying discrepancies and proposing effective solutions</li>
+                    <li>**Analytical Thinking:** Interpreting data to provide actionable insights</li>
+                    <li>**Effective Communication:** Clear and concise reporting, both written and verbal</li>
+                    <li>**Team Collaboration:** Working seamlessly within diverse teams to achieve objectives</li>
+                    <li>**Time Management:** Efficiently prioritizing tasks and meeting deadlines</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <section id="experience" class="container">
-        <h2>Projects & Experience</h2>
+        <h2>Experience & Projects</h2>
         <ul class="experience-list">
             <li class="experience-item">
-                <h3>Accounting Intern | ABC Solutions Inc. | June 2024 – August 2024</h3>
+                <h3>Accounting Intern</h3>
+                <span class="role-company">ABC Solutions Inc. | Yangon, Myanmar | June 2024 – August 2024</span>
                 <ul>
                     <li>Assisted in the reconciliation of **25+** bank accounts and credit card statements monthly, identifying and resolving **10+** discrepancies, which improved financial reporting accuracy.</li>
                     <li>Prepared and processed **50+** journal entries weekly, ensuring all transactions were accurately recorded in the general ledger and maintaining compliance with company policies.</li>
@@ -201,7 +569,8 @@
                 </ul>
             </li>
             <li class="experience-item">
-                <h3>Volunteer Bookkeeper | Community Outreach Foundation | September 2023 – May 2024</h3>
+                <h3>Volunteer Bookkeeper</h3>
+                <span class="role-company">Community Outreach Foundation | Yangon, Myanmar | September 2023 – May 2024</span>
                 <ul>
                     <li>Managed financial records for a non-profit organization using QuickBooks Online, ensuring accurate categorization of income and expenses.</li>
                     <li>Generated monthly financial reports, including Statements of Activities and Statements of Financial Position, providing clear insights into the foundation's fiscal health for board members.</li>
@@ -209,7 +578,8 @@
                 </ul>
             </li>
             <li class="experience-item">
-                <h3>Academic Project: Financial Statement Analysis | University of XYZ | Fall 2023</h3>
+                <h3>Academic Project: Financial Statement Analysis</h3>
+                <span class="role-company">University of XYZ | Yangon, Myanmar | Fall 2023</span>
                 <ul>
                     <li>Conducted a comprehensive financial statement analysis of a publicly traded company using its annual reports (10-K filings).</li>
                     <li>Utilized Excel to calculate key financial ratios (liquidity, profitability, solvency, efficiency) and presented findings on the company's financial health and performance to a peer group.</li>
@@ -219,29 +589,84 @@
         </ul>
 
         <h3>Certifications:</h3>
-        <ul>
+        <ul class="certification-list">
             <li>QuickBooks Online Certified User (Intuit) - 2024</li>
             <li>Introduction to Financial Accounting (Coursera Certificate) - 2023</li>
+            <li>Microsoft Excel Expert (Expected 2025)</li>
         </ul>
     </section>
 
     <section class="container">
-        <h2>Testimonials</h2>
+        <h2>What Others Say</h2>
         <blockquote>
-            "Jane was an invaluable asset during her internship. Her meticulous attention to detail and proactive approach to problem-solving significantly helped our team maintain accurate financial records. She's a quick learner and a pleasure to work with."
-            <cite>— John Smith, Senior Accountant, ABC Solutions Inc.</cite>
+            "Jane was an invaluable asset during her internship. Her meticulous attention to detail and proactive approach to problem-solving significantly helped our team maintain accurate financial records. She's a quick learner and a pleasure to work with. I highly recommend her for any junior accounting role."
+            <cite>— **John Smith**, Senior Accountant, ABC Solutions Inc.</cite>
         </blockquote>
-    </section>
-
-    <section id="contact" class="container contact-info">
-        <h2>Contact Me</h2>
-        <p><strong>Email:</strong> <a href="mailto:jane.doe@email.com">jane.doe@email.com</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/janedoeaccountant" target="_blank">linkedin.com/in/janedoeaccountant</a></p>
         </section>
 
+    <section id="contact" class="container">
+        <h2>Get In Touch</h2>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> **Email:** <a href="mailto:jane.doe@email.com">jane.doe@email.com</a></p>
+            <p><i class="fab fa-linkedin"></i> **LinkedIn:** <a href="https://linkedin.com/in/janedoeaccountant" target="_blank">linkedin.com/in/janedoeaccountant</a></p>
+            </div>
+
+        <div class="contact-form">
+            <h3>Send Me a Message</h3>
+            <form action="#" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Your Name">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Your Email Address">
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" placeholder="Subject of your message">
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="6" required placeholder="Your message here..."></textarea>
+
+                <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+            </form>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2025 Jane Doe. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2025 Jane Doe. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+
+            const options = {
+                threshold: 0.1, // When 10% of the section is visible
+                rootMargin: "0px"
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                // Don't animate the hero section, it has its own
+                if (!section.classList.contains('hero')) {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(20px)';
+                    section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                    observer.observe(section);
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
