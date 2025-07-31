@@ -147,7 +147,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #4a6c90 100%); /* Slightly lighter end color for gradient */
+            /* Background will be handled by canvas */
+            background: var(--primary-color); /* Fallback or base color */
             color: var(--white-color);
             text-align: center;
             padding: 140px 0; /* More vertical padding */
@@ -156,8 +157,17 @@
             border-bottom-left-radius: 40px; /* More pronounced radius */
             border-bottom-right-radius: 40px;
         }
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Ensures canvas is behind content */
+            pointer-events: none; /* Allows clicks to pass through to content */
+        }
         .hero-content {
-            z-index: 1;
+            z-index: 1; /* Ensures content is above canvas */
             position: relative;
         }
         .profile-img {
@@ -635,72 +645,100 @@
                 gap: 30px;
             }
             .about-skills ul {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Single column on small screens */
             }
             .skills-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
             }
-            section {
-                padding: 50px 0;
-            }
-            .experience-list {
-                padding-left: 0;
-                border-left: none;
-            }
-            .experience-item::before {
-                display: none; /* Hide timeline dot on small screens */
+            .skill-category {
+                padding: 25px;
             }
             .experience-item {
-                border-left: 6px solid var(--secondary-accent); /* Keep border on small screens */
+                padding: 25px;
+                margin-bottom: 25px;
+            }
+            .experience-item::before {
+                left: -30px;
+                top: 30px;
+                width: 16px;
+                height: 16px;
+            }
+            .experience-item .date-badge {
+                position: static; /* Stack on smaller screens */
+                margin-top: 15px;
+                display: inline-block;
+            }
+            .contact-form {
+                padding: 30px;
+            }
+            .contact-form input,
+            .contact-form textarea {
+                width: calc(100% - 20px);
+                padding: 12px;
+            }
+            .contact-form button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            .nav-links {
+                display: block; /* Stack navigation links */
+            }
+            .nav-links li {
+                display: block;
+                margin: 10px 0;
+            }
+            .hero h2 {
+                font-size: 2.2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            h2 {
+                font-size: 1.8em;
             }
             .certification-list {
                 flex-direction: column;
                 align-items: center;
             }
-            .contact-form {
-                padding: 30px;
-            }
         }
     </style>
 </head>
 <body>
-
-    <header id="home">
+    <header>
         <div class="container">
-            <div class="navbar">
-                <a href="#home" class="logo">
-                    <svg width="40" height="40" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 0 L100 25 L100 75 L50 100 L0 75 L0 25 Z" fill="url(#gradient-logo)"/>
-                        <defs>
-                            <linearGradient id="gradient-logo" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#3498db"/>
-                                <stop offset="1" stop-color="#2ecc71"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="50" cy="50" r="20" fill="#2c3e50" opacity="0.9"/>
-                        <text x="50" y="58" font-family="Montserrat, sans-serif" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">SYME</text>
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <svg height="32" viewBox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                     </svg>
-                    Shwe Ya Min Eain
+                    Ma Shwe Ya Min Eain
                 </a>
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Me</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <section class="hero">
-        <div class="container hero-content">
-            <img src="https://via.placeholder.com/240/3498db/FFFFFF?text=ShweYaMinEain" alt="Professional Photo" class="profile-img">
-            <h2>Precision in Numbers, Powering Growth.</h2>
-            <p>Your Dedicated Partner for **Financial Accuracy** and **Insight**, driving efficiency and supporting sound decision-making.</p>
+        <canvas id="particle-canvas"></canvas>
+        <div class="hero-content">
+            <img src="https://via.placeholder.com/240" alt="Ma Shwe Ya Min Eain Profile" class="profile-img">
+            <h2>Hello, I'm Ma Shwe Ya Min Eain</h2>
+            <p>A dedicated Junior Accountant committed to accuracy, efficiency, and continuous learning.</p>
         </div>
     </section>
 
@@ -708,204 +746,289 @@
         <h2>About Me</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>Hello! I'm Shwe Ya Min Eain, a highly motivated and detail-oriented junior accountant with a strong foundation in financial principles and a passion for data accuracy. I am eager to contribute my analytical skills and dedication to a dynamic accounting team, driving efficiency and supporting sound financial decision-making.</p>
-                <p>My approach is rooted in **meticulous attention to detail**, ensuring the highest level of accuracy in financial records. I am a **quick learner**, proficient in various accounting software, and committed to **ethical practice** and **confidentiality** in all financial matters.</p>
-                <p>Outside of my professional pursuits, I enjoy playing chess, which has further honed my **strategic thinking** and ability to anticipate outcomes – skills I find directly applicable to financial planning and analysis. I am actively seeking opportunities to expand my knowledge and improve financial processes.</p>
-                <p style="text-align: center; margin-top: 35px; font-weight: 600; font-size: 1.1em; color: var(--primary-color);">Explore my skills and experience below to see how I can be an asset to your team.</p>
+                <p>Hello! I'm Ma Shwe Ya Min Eain, a passionate and detail-oriented Junior Accountant based in Yangon, Myanmar. My journey into accounting began with a strong interest in financial data analysis and a commitment to maintaining precise financial records.</p>
+                <p>I hold a **B.Com (Hons.) from the University of Yangon, Economics Department**, and have actively pursued professional development, including the **LCCI Level 3 Certificate in Accounting**. My goal is to leverage my analytical skills and knowledge of accounting principles to contribute effectively to an organization's financial health.</p>
+                <p>I am eager to apply my proficiency in **Microsoft Excel**, **QuickBooks**, and **accounting software** to real-world challenges, consistently striving for accuracy and efficiency in all tasks. I am a quick learner, highly adaptable, and thrive in dynamic environments where I can continuously expand my expertise.</p>
             </div>
             <div class="about-skills">
-                <h3>Key Strengths & Values:</h3>
+                <h3>My Passion & Strengths</h3>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> Meticulous Attention to Detail</li>
-                    <li><i class="fas fa-check-circle"></i> Proficiency in Accounting Software</li>
-                    <li><i class="fas fa-check-circle"></i> Strong Analytical & Problem-Solving Skills</li>
-                    <li><i class="fas fa-check-circle"></i> Commitment to Ethical Practice</li>
-                    <li><i class="fas fa-check-circle"></i> Continuous Learner & Adaptable</li>
-                    <li><i class="fas fa-check-circle"></i> Excellent Communication & Teamwork</li>
+                    <li><i class="fas fa-chart-line"></i> Financial Analysis</li>
+                    <li><i class="fas fa-calculator"></i> Data Accuracy</li>
+                    <li><i class="fas fa-lightbulb"></i> Problem-Solving</li>
+                    <li><i class="fas fa-book"></i> Continuous Learning</li>
+                    <li><i class="fas fa-handshake"></i> Team Collaboration</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="skills" class="container">
-        <h2>Skills</h2>
+        <h2>My Skills</h2>
         <div class="skills-grid">
             <div class="skill-category">
-                <h3><i class="fas fa-laptop-code"></i> Technical Proficiency</h3>
+                <h3><i class="fas fa-laptop-code"></i> Software & Tools</h3>
                 <ul>
-                    <li>
-                        <div class="skill-item">
-                            <span class="skill-name">QuickBooks Online</span>
-                            <div class="progress-bar-container"><div class="progress-bar" style="--skill-level: 95%;"></div></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="skill-item">
-                            <span class="skill-name">Microsoft Excel (Advanced)</span>
-                            <div class="progress-bar-container"><div class="progress-bar" style="--skill-level: 90%;"></div></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="skill-item">
-                            <span class="skill-name">Xero</span>
-                            <div class="progress-bar-container"><div class="progress-bar" style="--skill-level: 80%;"></div></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="skill-item">
-                            <span class="skill-name">SAP (Basic Navigation)</span>
-                            <div class="progress-bar-container"><div class="progress-bar" style="--skill-level: 60%;"></div></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="skill-item">
-                            <span class="skill-name">Tally.ERP 9</span>
-                            <div class="progress-bar-container"><div class="progress-bar" style="--skill-level: 75%;"></div></div>
-                        </div>
-                    </li>
-                    <li>Data Analysis & Visualization Principles</li>
+                    <li>Microsoft Excel (Advanced)</li>
+                    <li>QuickBooks</li>
+                    <li>SAP (Basic Familiarity)</li>
+                    <li>Payroll Software</li>
+                    <li>Microsoft Word & PowerPoint</li>
                 </ul>
             </div>
             <div class="skill-category">
-                <h3><i class="fas fa-lightbulb"></i> Core Competencies</h3>
+                <h3><i class="fas fa-chart-bar"></i> Accounting Principles</h3>
                 <ul>
-                    <li>Attention to Detail & Accuracy</li>
-                    <li>Problem-Solving & Discrepancy Resolution</li>
-                    <li>Analytical Thinking & Financial Insights</li>
-                    <li>Effective Communication (Written & Verbal)</li>
-                    <li>Team Collaboration & Interpersonal Skills</li>
-                    <li>Time Management & Deadline Adherence</li>
-                    <li>Ethical Practice & Confidentiality</li>
+                    <li>Financial Reporting</li>
+                    <li>Bookkeeping</li>
+                    <li>General Ledger Management</li>
+                    <li>Accounts Payable/Receivable</li>
+                    <li>Bank Reconciliation</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-cogs"></i> Core Competencies</h3>
+                <ul>
+                    <li>Data Entry & Verification</li>
+                    <li>Attention to Detail</li>
+                    <li>Analytical Skills</li>
+                    <li>Time Management</li>
+                    <li>Confidentiality</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="experience" class="container">
-        <h2>Experience & Projects</h2>
-        <ul class="experience-list">
-            <li class="experience-item">
-                <span class="date-badge">June 2024 – August 2024</span>
-                <h3>Accounting Intern</h3>
-                <span class="role-company">ABC Solutions Inc. | Yangon, Myanmar</span>
+        <h2>Experience & Education</h2>
+        <div class="experience-list">
+            <div class="experience-item">
+                <span class="date-badge">Feb 2023 - Present</span>
+                <h3>Junior Accountant</h3>
+                <span class="role-company">ABC Accounting Firm, Yangon</span>
                 <ul>
-                    <li>Assisted in the reconciliation of **25+** bank accounts and credit card statements monthly, identifying and resolving **10+** discrepancies, which improved financial reporting accuracy.</li>
-                    <li>Prepared and processed **50+** journal entries weekly, ensuring all transactions were accurately recorded in the general ledger and maintaining compliance with company policies.</li>
-                    <li>Supported the accounts payable department by verifying **100+** invoices against purchase orders and receipts, contributing to timely vendor payments and efficient cash flow management.</li>
-                    <li>Collaborated with senior accountants on month-end closing procedures, including data validation and preliminary financial statement preparation, enhancing my understanding of full-cycle accounting.</li>
+                    <li>Assisted in preparing monthly, quarterly, and annual financial reports.</li>
+                    <li>Managed accounts payable and receivable, ensuring timely processing of invoices and payments.</li>
+                    <li>Conducted daily bank reconciliations to ensure accuracy of financial transactions.</li>
+                    <li>Supported senior accountants in preparing tax declarations and statutory filings.</li>
+                    <li>Maintained accurate general ledger records and assisted with journal entries.</li>
                 </ul>
-            </li>
-            <li class="experience-item">
-                <span class="date-badge">Sept 2023 – May 2024</span>
-                <h3>Volunteer Bookkeeper</h3>
-                <span class="role-company">Community Outreach Foundation | Yangon, Myanmar</span>
+            </div>
+            <div class="experience-item">
+                <span class="date-badge">2019 - 2022</span>
+                <h3>Bachelor of Commerce (Honours)</h3>
+                <span class="role-company">University of Yangon, Economics Department</span>
                 <ul>
-                    <li>Managed financial records for a non-profit organization using QuickBooks Online, ensuring accurate categorization of income and expenses.</li>
-                    <li>Generated monthly financial reports, including Statements of Activities and Statements of Financial Position, providing clear insights into the foundation's fiscal health for board members.</li>
-                    <li>Assisted in preparing documentation for the annual audit, contributing to a smooth and successful review process.</li>
+                    <li>Specialized in Accounting and Finance.</li>
+                    <li>Gained comprehensive knowledge in financial accounting, management accounting, auditing, and taxation.</li>
+                    <li>Participated in various financial modeling workshops and case study competitions.</li>
                 </ul>
-            </li>
-            <li class="experience-item">
-                <span class="date-badge">Fall 2023</span>
-                <h3>Academic Project: Financial Statement Analysis</h3>
-                <span class="role-company">University of XYZ | Yangon, Myanmar</span>
+            </div>
+            <div class="experience-item">
+                <span class="date-badge">2021</span>
+                <h3>LCCI Level 3 Certificate in Accounting</h3>
+                <span class="role-company">Pearson LCCI Qualifications, Yangon</span>
                 <ul>
-                    <li>Conducted a comprehensive financial statement analysis of a publicly traded company using its annual reports (10-K filings).</li>
-                    <li>Utilized Excel to calculate key financial ratios (liquidity, profitability, solvency, efficiency) and presented findings on the company's financial health and performance to a peer group.</li>
-                    <li>Developed a projected income statement and balance sheet for the subsequent fiscal year, demonstrating forecasting skills.</li>
+                    <li>Acquired advanced skills in financial accounting and management accounting.</li>
+                    <li>Developed expertise in preparing financial statements and understanding accounting standards.</li>
                 </ul>
-            </li>
-        </ul>
+            </div>
+        </div>
 
-        <h3>Certifications:</h3>
+        <h3>Certifications & Training</h3>
         <ul class="certification-list">
-            <li>QuickBooks Online Certified User (Intuit) - 2024</li>
-            <li>Introduction to Financial Accounting (Coursera Certificate) - 2023</li>
-            <li>Microsoft Excel Expert (Expected 2025)</li>
+            <li><i class="fas fa-medal"></i> Certified QuickBooks User</li>
+            <li><i class="fas fa-chart-pie"></i> Advanced Excel for Accountants</li>
+            <li><i class="fas fa-certificate"></i> Financial Data Analysis Workshop</li>
         </ul>
     </section>
 
-    <section class="container">
+    <section id="testimonials" class="container">
         <h2>What Others Say</h2>
         <blockquote>
-            <p>"Shwe Ya Min Eain was an invaluable asset during her internship. Her meticulous attention to detail and proactive approach to problem-solving significantly helped our team maintain accurate financial records. She's a quick learner and a pleasure to work with. I highly recommend her for any junior accounting role."</p>
-            <cite>— **John Smith**, Senior Accountant, ABC Solutions Inc.</cite>
+            <p>"Ma Shwe Ya Min Eain is an exceptionally diligent and reliable junior accountant. Her attention to detail and proactive approach significantly contributed to our team's efficiency. She is a quick learner and a pleasure to work with."</p>
+            <cite>— U Kyaw Kyaw, Senior Accountant at ABC Accounting Firm</cite>
         </blockquote>
     </section>
 
     <section id="contact" class="container">
-        <h2>Get In Touch</h2>
+        <h2>Get in Touch</h2>
         <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> **Email:** <a href="mailto:shwe.yamineain@email.com">shwe.yamineain@email.com</a></p>
-            <p><i class="fab fa-linkedin"></i> **LinkedIn:** <a href="https://linkedin.com/in/shwe-ya-min-eain-accountant" target="_blank">linkedin.com/in/shwe-ya-min-eain-accountant</a></p>
+            <p><i class="fas fa-envelope"></i> mashweya.eain@email.com</p>
+            <p><i class="fas fa-phone-alt"></i> +95 9 XXXXXXXX</p>
+            <p><i class="fas fa-map-marker-alt"></i> Yangon, Myanmar</p>
         </div>
+        <form class="contact-form" action="#" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
 
-        <div class="contact-form">
-            <h3>Send Me a Message</h3>
-            <form action="#" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required placeholder="Your Name">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required placeholder="Your Email Address">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required>
 
-                <label for="subject">Subject:</label>
-                <input type="text" id="subject" name="subject" placeholder="Subject of your message">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
 
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="6" required placeholder="Your message here..."></textarea>
-
-                <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
-            </form>
-        </div>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Shwe Ya Min Eain. All rights reserved.</p>
+            <p>&copy; 2025 Ma Shwe Ya Min Eain. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section:not(.hero)'); // Exclude hero section
-            const skillCategories = document.querySelectorAll('.skill-category');
-
-            const sectionOptions = {
-                threshold: 0.15, // When 15% of the section is visible
-                rootMargin: "0px"
-            };
-
-            const sectionObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                        observer.unobserve(entry.target);
-                    }
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
-            }, sectionOptions);
-
-            sections.forEach(section => {
-                sectionObserver.observe(section);
-            });
-
-            // Skill progress bar animation
-            const skillObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.querySelectorAll('.progress-bar').forEach(bar => {
-                            bar.style.width = bar.style.getPropertyValue('--skill-level');
-                        });
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 }); // Trigger when 50% of skill category is visible
-
-            skillCategories.forEach(category => {
-                skillObserver.observe(category);
             });
         });
-    </script>
 
+        // Scroll animation for sections
+        const sections = document.querySelectorAll('section:not(.hero)'); // Exclude hero section
+        const options = {
+            threshold: 0.2 // Trigger when 20% of the section is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+
+                    // If it's a skill category, trigger progress bar animation
+                    if (entry.target.id === 'skills') {
+                        document.querySelectorAll('.skill-category').forEach(category => {
+                            // Add animated class to trigger progress bar transitions
+                            category.classList.add('animated');
+                            // Example: Set specific skill levels (replace with actual data if using bars)
+                            // category.querySelectorAll('.progress-bar').forEach(bar => {
+                            //     const level = bar.dataset.level || '80%'; // Get level from data attribute or default
+                            //     bar.style.setProperty('--skill-level', level);
+                            // });
+                        });
+                    }
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+
+        // Particle Canvas Animation
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        // Set canvas size
+        function setCanvasSize() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+
+        // Particle class
+        class Particle {
+            constructor(x, y, size, speedX, speedY, color) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.speedX = speedX;
+                this.speedY = speedY;
+                this.color = color;
+            }
+
+            // Update particle position
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Bounce off edges
+                if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+                    this.speedX *= -1;
+                }
+                if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+                    this.speedY *= -1;
+                }
+            }
+
+            // Draw particle
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Create particles
+        function initParticles() {
+            particles = [];
+            const numberOfParticles = (canvas.width * canvas.height) / 9000; // Adjust density
+            for (let i = 0; i < numberOfParticles; i++) {
+                const size = Math.random() * 3 + 1; // Particles between 1px and 4px
+                const x = Math.random() * (canvas.width - size * 2) + size;
+                const y = Math.random() * (canvas.height - size * 2) + size;
+                const speedX = Math.random() * 0.6 - 0.3; // Speed between -0.3 and 0.3
+                const speedY = Math.random() * 0.6 - 0.3;
+                const color = 'rgba(255, 255, 255, 0.6)'; // White with some transparency
+                particles.push(new Particle(x, y, size, speedX, speedY, color));
+            }
+        }
+
+        // Connect particles with lines
+        function connectParticles() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    const distance = ((particles[a].x - particles[b].x) ** 2 + (particles[a].y - particles[b].y) ** 2) ** 0.5;
+                    const maxDistance = 120; // Max distance for lines to appear
+
+                    if (distance < maxDistance) {
+                        opacityValue = 1 - (distance / maxDistance);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacityValue})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Animation loop
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            connectParticles();
+        }
+
+        // Initialize on load and resize
+        window.addEventListener('load', () => {
+            setCanvasSize();
+            initParticles();
+            animateParticles();
+        });
+
+        window.addEventListener('resize', () => {
+            setCanvasSize();
+            initParticles(); // Re-initialize particles to adapt to new size
+        });
+    </script>
 </body>
 </html>
